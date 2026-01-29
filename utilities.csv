@@ -1,0 +1,9 @@
+Name,Description,Url,Type
+Gemini Pro Orchestrator,Advanced LLM routing and prompt management subsystem for core services.,https://example.com/ai-orchestrator,AI
+Vector Search Engine,Semantic search engine powered by high-dimensional vector embeddings.,https://example.com/vector-search,AI
+Vision Pipeline,Real-time image and video processing for automated visual testing.,https://example.com/vision,AI
+CI/CD Analytics Hub,Unified dashboard for tracking build failures flakiness and deployment speed.,https://example.com/ci-analytics,Analytics
+Metric Sentry,Anomaly detection and alerting for system-wide performance metrics.,https://example.com/metrics,Analytics
+Test Coverage Heatmap,Visual analysis of codebase coverage across distributed microservices.,https://example.com/coverage,Analytics
+Infrastructure Monitor,Cloud resource utilization and cost analytics dashboard.,https://example.com/infra,Analytics
+Neural Code Reviewer,AI-powered automated code review and security vulnerability scanning.,https://example.com/code-review,AI
