@@ -5,3 +5,8 @@ body {
   background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
   background-size: 24px 24px;
 }
+
+body.dark {
+  background-color: #0f172a; /* slate-950 */
+  background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+}
