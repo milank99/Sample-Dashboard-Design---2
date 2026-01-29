@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,29 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EngOps Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc; /* slate-50 */
-      background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
-      background-size: 24px 24px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 <script type="importmap">
 {
   "imports": {
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="app" class="min-h-screen pb-20">
+    <!-- Header -->
+    <header class="pt-12 pb-8 px-4 text-center max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 mb-6">
+        <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+        <span class="text-[11px] font-bold text-indigo-600 uppercase tracking-widest">
+          By IMTest Automation Team
+        </span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
+        EngOps <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-teal-500">—</span> AI & Analytics
+      </h1>
+      <p class="text-slate-500 max-w-lg mx-auto mb-10 text-lg">
+        Central intelligence hub for software engineering operations and subsystem monitoring.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="relative max-w-2xl mx-auto group">
+        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+          <i data-lucide="search" class="h-5 w-5 text-slate-400 group-focus-within:text-indigo-500 transition-colors"></i>
+        </div>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search systems, dashboards, or tools..."
+          class="block w-full pl-14 pr-4 py-4 md:py-5 bg-white border-2 border-slate-100 rounded-2xl text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-50 transition-all shadow-sm text-lg"
+        />
+      </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loader" class="flex flex-col items-center justify-center py-20">
+      <i data-lucide="loader-2" class="w-12 h-12 text-indigo-500 animate-spin mb-4"></i>
+      <p class="text-slate-600 font-medium">Loading EngOps Intelligence...</p>
+    </div>
+
+    <!-- Main Content (Hidden initially) -->
+    <main id="main-content" class="max-w-7xl mx-auto px-6 mt-8 hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        
+        <!-- AI Subsystems -->
+        <section id="ai-section" class="transition-all duration-300">
+          <div class="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200">
+            <div class="p-2 bg-violet-50 rounded-lg">
+              <i data-lucide="sparkles" class="w-5 h-5 text-indigo-600"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-800">AI Subsystems</h2>
+            <span id="ai-count" class="ml-auto text-xs font-mono text-slate-400 bg-slate-100 px-2 py-1 rounded">
+              0 Tools
+            </span>
+          </div>
+          <div id="ai-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+            <!-- AI Cards injected here -->
+          </div>
+          <div id="ai-empty" class="hidden col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-3xl">
+            <p class="text-slate-400 italic">No AI matching results</p>
+          </div>
+        </section>
+
+        <!-- Analytics Ops -->
+        <section id="analytics-section" class="transition-all duration-300">
+          <div class="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200">
+            <div class="p-2 bg-teal-50 rounded-lg">
+              <i data-lucide="database" class="w-5 h-5 text-teal-600"></i>
+            </div>
+            <h2 class="text-xl font-bold text-slate-800">Analytics & Ops</h2>
+            <span id="analytics-count" class="ml-auto text-xs font-mono text-slate-400 bg-slate-100 px-2 py-1 rounded">
+              0 Tools
+            </span>
+          </div>
+          <div id="analytics-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+             <!-- Analytics Cards injected here -->
+          </div>
+          <div id="analytics-empty" class="hidden col-span-full py-12 text-center border-2 border-dashed border-slate-200 rounded-3xl">
+            <p class="text-slate-400 italic">No Analytics matching results</p>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Global Empty State -->
+      <div id="global-empty" class="hidden mt-20 text-center animate-in fade-in duration-500">
+        <div class="mx-auto w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+          <i data-lucide="filter-x" class="w-12 h-12 text-slate-300"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-slate-800 mb-2">No utilities found</h3>
+        <p class="text-slate-500">Try adjusting your search terms to find what you're looking for.</p>
+        <button 
+          id="clear-search-btn"
+          class="mt-6 px-6 py-2 bg-slate-800 text-white rounded-xl hover:bg-slate-700 transition-colors font-medium"
+        >
+          Clear Search
+        </button>
+      </div>
+    </main>
+
+    <footer class="mt-20 border-t border-slate-100 pt-10 text-center text-slate-400 text-sm">
+      &copy; <span id="year"></span> IMTest Automation Platform. Internal Use Only.
+    </footer>
+  </div>
+
+  <script type="module" src="index.js"></script>
 </body>
 </html>
