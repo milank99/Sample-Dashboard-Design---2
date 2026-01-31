@@ -1,12 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f8fafc; /* slate-50 */
-  background-image: radial-gradient(#e2e8f0 0.5px, transparent 0.5px);
-  background-size: 24px 24px;
+  /* Subtle grain texture overlay for tech feel */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
 
-body.dark {
-  background-color: #0f172a; /* slate-950 */
-  background-image: radial-gradient(#1e293b 0.5px, transparent 0.5px);
+/* Card Styles */
+.nav-card {
+  @apply relative flex items-center gap-4 p-4 bg-white dark:bg-[#121214] border border-slate-200 dark:border-white/5 rounded-xl transition-all duration-200 group overflow-hidden;
+}
+
+.nav-card:hover {
+  @apply border-indigo-500/50 transform -translate-y-1 shadow-xl shadow-indigo-500/10;
+}
+
+/* Icon Box */
+.icon-box {
+  @apply w-12 h-12 flex-shrink-0 rounded-lg flex items-center justify-center transition-colors duration-200;
+}
+
+.nav-card:hover .icon-box.ai {
+  @apply bg-indigo-500 text-white;
+}
+
+.nav-card:hover .icon-box.analytics {
+  @apply bg-emerald-500 text-white;
+}
+
+/* Typography */
+.card-title {
+  @apply text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors;
+}
+
+.card-desc {
+  @apply text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors;
+}
+
+/* Launch Arrow */
+.launch-arrow {
+  @apply absolute right-4 opacity-0 transform translate-x-2 transition-all duration-200 text-indigo-500;
+}
+
+.nav-card:hover .launch-arrow {
+  @apply opacity-100 translate-x-0;
+}
+
+/* Section Transitions */
+.group\/section {
+  @apply transition-opacity duration-300;
 }
